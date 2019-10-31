@@ -1,0 +1,7 @@
+<!--<app-recipe-item *ngFor="let recipe of recipes" [recipeItem]="recipe" (click)="onSelectedRecipe(recipe)"></app-recipe-item>-->
+
+<!--using service-->
+<!-- <app-recipe-item *ngFor="let recipe of recipes" [recipeItem]="recipe" (click)="onSelectedRecipe(recipe)"></app-recipe-item> -->
+
+<!--using routers-->
+<app-recipe-item *ngFor="let recipe of recipes; let i=index" [recipeItem]="recipe" [index]=i></app-recipe-item>
