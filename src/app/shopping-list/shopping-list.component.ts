@@ -15,17 +15,26 @@ export class ShoppingListComponent implements OnInit {
   // }
 
   //////////////using service//////////////
-  ingredients:Ingredient[]=[]
-  newIngredientAdded:Ingredient;
-  constructor(private slService:ShoppingService)
+  ingredients: Ingredient[];  
+  newIngredientAdded: Ingredient;
+//new variables for forms
+editMode: boolean = false;
+
+  constructor(private slService: ShoppingService)
    { }
 
   ngOnInit() {
    this.ingredients=this.slService.Ingredients;
-   this.slService.ingredientAdded.subscribe((ingre:Ingredient)=>{this.ingredients.push(ingre)});
-    
+  // this.slService.ingredientAdded.subscribe((ingre:Ingredient)=>{this.ingredients.push(ingre)});
+   this.slService.ingredientsChanged.subscribe( (ingsFromServ: Ingredient[]) => { this.ingredients = ingsFromServ; });
 
   }
+///after forms
 
+onEditIngredient(index: number) {
+  console.log('inside onEditIng');
+  this.slService.startedEditing.next(index);
+
+}
 
 }
